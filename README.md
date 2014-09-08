@@ -48,13 +48,13 @@ Subjects are stored on file  subject_test.txt. We have to upload it in a new dat
   subject_tests  <- read.table("test/subject_test.txt", header = FALSE)
   names(subject_tests)  <- c("Subject")
   
- ## 6.- Merge Tests data with subjects
+## 6.- Merge Tests data with subjects
 
 We have to combine test data (X_test) with each subject, stored in subject_tests data frame:
 
   X_test  <- cbind(X_test, subject_tests)
   
- ## 7.-  Train file
+## 7.-  Train file
 
 Now is time to read train data from file X_train.txt. Header names are identical to test data:
 
@@ -62,7 +62,7 @@ Now is time to read train data from file X_train.txt. Header names are identical
   names(X_train) <- X_test_header[,2]
   
   
- ## 8.- Train Labels
+## 8.- Train Labels
 
 Next step is to assign the activity labels for train data. The process is exactly the same as we did with test data:
 
@@ -71,7 +71,7 @@ Next step is to assign the activity labels for train data. The process is exactl
   names(X_train_labels)  <- c("Activity_code", "Activity_Name")
   X_train  <- cbind(X_train, X_train_labels)
    
- ## 9.- Train Subjects
+## 9.- Train Subjects
 
 To complete train data, we need to assign subjects to each row as we did with tests:
 
@@ -81,15 +81,13 @@ To complete train data, we need to assign subjects to each row as we did with te
  ### Merge Train data with subjects
   X_train  <- cbind(X_train, subject_train)
   
- ## 10.- Creates Total data frame 
+## 10.- Creates Total data frame 
 
 Now is time to combine train and test data in a new data frame called X_total. We are also creating a flat file into disk with the result:
 
   X_total  <- rbind(X_test, X_train)
   write.table(X_total, "total/X_total.txt")
 
-
-  
 ## 11.- Select only Std and mean columns. 
 
 I've created a new file from features.txt that contents only the names of columns required. As you can see in the file, there are two columns: column number and column name.
